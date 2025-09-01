@@ -34,12 +34,11 @@ coverage/
 jacoco.exec
 /test-output/
 
-# 依赖缓存（不要上传，直接用 maven/gradle 下载即可）
+
 /.mvn/wrapper/maven-wrapper.jar
 /.mvn/wrapper/maven-wrapper.properties
 .gradle/
 build/
 
-# 如果你有前端模块（比如 Vue/React），加上以下：
 node_modules/
 dist/
