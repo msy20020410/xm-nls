@@ -9,6 +9,6 @@ public class TestController {
     // 测试接口
     @GetMapping("/test")
     public String test() {
-        return "hello world";
+        return "hello world ";
     }
 }
