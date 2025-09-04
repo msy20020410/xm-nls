@@ -3,5 +3,5 @@ Accept: application/json
 
 ###
 
-GET http://localhost:18000/nls/query?name=xiaoma
+GET http://localhost:18000/nls/query?name=null
 Accept: application/json
