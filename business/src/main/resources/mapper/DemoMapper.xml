@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xm.nls.business.mapper.DemoMapper">
-    <resultMap id="BaseResultMap" type="com.xm.nls.business.model.entity.Demo">
+    <resultMap id="BaseResultMap" type="com.xm.nls.business.domain.Demo">
         <!--@mbg.generated-->
         <!--@Table demo-->
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -26,13 +26,13 @@
         from demo
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xm.nls.business.model.entity.Demo"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.xm.nls.business.domain.Demo"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into demo (`name`, age, created_at)
         values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xm.nls.business.model.entity.Demo"
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.xm.nls.business.domain.Demo"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into demo
@@ -59,7 +59,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.xm.nls.business.model.entity.Demo">
+    <update id="updateByPrimaryKeySelective" parameterType="com.xm.nls.business.domain.Demo">
         <!--@mbg.generated-->
         update demo
         <set>
@@ -75,7 +75,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.xm.nls.business.model.entity.Demo">
+    <update id="updateByPrimaryKey" parameterType="com.xm.nls.business.domain.Demo">
         <!--@mbg.generated-->
         update demo
         set `name`     = #{name,jdbcType=VARCHAR},

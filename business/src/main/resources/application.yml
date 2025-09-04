@@ -12,6 +12,14 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  # 热部署devtools相关配置
+  devtools:
+    restart:
+      enabled: true
+  thymeleaf:
+    cache: false
+  freemarker:
+    cache: false
 
 mybatis:
   # 指定 Mapper.xml 文件路径
@@ -26,5 +34,7 @@ mybatis:
 logging:
   level:
     com.xm.nls.business.mapper: trace
+
+
 
 

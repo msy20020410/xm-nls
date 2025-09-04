@@ -1,6 +1,6 @@
 package com.xm.nls.business.mapper;
 
-import com.xm.nls.business.model.entity.Demo;
+import com.xm.nls.business.domain.Demo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

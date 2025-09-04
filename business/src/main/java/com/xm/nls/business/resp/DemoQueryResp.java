@@ -1,20 +1,14 @@
-package com.xm.nls.business.model.entity;
+package com.xm.nls.business.resp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Demo {
+@AllArgsConstructor
+public class DemoQueryResp {     // 封装响应实体
     private Integer id;
-
     private String name;
-
     private Integer age;
-
-    private Date createdAt;
 }

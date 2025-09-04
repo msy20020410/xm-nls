@@ -1,10 +1,13 @@
 package com.xm.nls.business.controller;
 
-import com.xm.nls.business.model.entity.Demo;
+import cn.hutool.core.bean.BeanUtil;
+import com.xm.nls.business.domain.Demo;
+import com.xm.nls.business.req.DemoQueryReq;
+import com.xm.nls.business.resp.CommonResp;
+import com.xm.nls.business.resp.DemoQueryResp;
 import com.xm.nls.business.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,13 +20,15 @@ public class TestController {
 
     // 测试接口
     @GetMapping("/test")
-    public String test() {
-        return "hello world ";
+    public CommonResp<String> test() {
+        return new CommonResp<>("hello world ");
     }
 
     // 测试根据姓名查询
     @GetMapping("/query")
-    public List<Demo> query(@RequestParam(required = false) String name) {
-        return demoService.query(name);
+    public CommonResp<List<DemoQueryResp>> query(DemoQueryReq demoQueryReq) {
+        List<Demo> demoList = demoService.query(demoQueryReq);
+        // 避免返回直接的实体对象,将数据转换成DemoQueryResp
+        return new CommonResp<>(BeanUtil.copyToList(demoList, DemoQueryResp.class));
     }
 }
