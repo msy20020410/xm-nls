@@ -1,9 +1,6 @@
 package com.xm.nls.business.service.impl;
 
-import cn.hutool.core.util.StrUtil;
 import com.xm.nls.business.domain.Demo;
-import com.xm.nls.business.exception.BusinessException;
-import com.xm.nls.business.exception.BusinessExceptionEnum;
 import com.xm.nls.business.mapper.DemoMapper;
 import com.xm.nls.business.req.DemoQueryReq;
 import com.xm.nls.business.service.DemoService;
@@ -20,9 +17,9 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public List<Demo> query(DemoQueryReq demoQueryReq) {
 
-        if (StrUtil.isBlank(demoQueryReq.getName())) {
-            throw new BusinessException(BusinessExceptionEnum.DEMO_NAME_NOT_NULL);
-        }
+//        if (StrUtil.isBlank(demoQueryReq.getName())) {
+//            throw new BusinessException(BusinessExceptionEnum.DEMO_NAME_NOT_NULL);
+//        }
 
         return demoMapper.selectByNameOrderByAge(demoQueryReq.getName());
     }

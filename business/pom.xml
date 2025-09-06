@@ -49,6 +49,12 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!--引入校验框架依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
         <!--添加fastjosn依赖，无需指定版本号-->
         <dependency>
             <groupId>com.alibaba</groupId>

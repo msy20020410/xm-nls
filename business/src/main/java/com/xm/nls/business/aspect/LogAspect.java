@@ -7,15 +7,18 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.smartcardio.ATR;
+import java.util.Arrays;
 
 @Aspect
 @Component
@@ -45,8 +48,12 @@ public class LogAspect {
         log.info("类名方法:{}.{} ", joinPoint.getSignature().getDeclaringTypeName(), name);
         log.info("远程地址:{}", request.getRemoteAddr());
 
-        // 打印请求参数
         Object[] args = joinPoint.getArgs();
+        // 过滤掉BindingResult 或 Exception
+        args = Arrays.stream(args)
+                .filter(arg -> !(arg instanceof BindingResult || arg instanceof Exception))
+                .toArray();
+
         log.info("请求参数: {}", JSONObject.toJSONString(args));
 
         // 排除特殊类型参数, 如文件类型
@@ -69,7 +76,11 @@ public class LogAspect {
 
         // 打印被切方法执行结果
         Object result = joinPoint.proceed();
-        log.info("返回结果: {}", JSONObject.toJSONString(result, excludeFilter));
+
+        // 返回值如果是异常也别进行序列化
+        if (!(result instanceof Exception)) {
+            log.info("返回结果: {}", JSONObject.toJSONString(result, excludeFilter));
+        }
 
         log.info("---------------环绕通知结束 耗时: {} ms ---------------------", System.currentTimeMillis() - startTime);
 
