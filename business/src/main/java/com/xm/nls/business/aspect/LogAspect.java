@@ -1,6 +1,7 @@
 package com.xm.nls.business.aspect;
 
 
+import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
 import jakarta.servlet.ServletRequest;
@@ -12,6 +13,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -33,6 +35,9 @@ public class LogAspect {
     // 环绕通知,使用该类记录接口的日志
     @Around("pointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        // 利用雪花算法,生成唯一的日志跟踪号id，方便查询不同线程的日志
+        MDC.put("LOG_ID", IdUtil.getSnowflakeNextIdStr());
+
         log.info("---------------环绕通知开始--------------------------------");
         long startTime = System.currentTimeMillis();
 
