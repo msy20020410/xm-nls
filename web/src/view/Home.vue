@@ -24,18 +24,19 @@
 import Header from "../components/Header.vue";
 import Sider from "../components/Sider.vue";
 import axios from "axios";
+import service from "../utils/request.js";
 
 //
 function send() {
-  axios.get("http://localhost:18000/nls/pass", {
-    params: {
-      name: "张三"
-    }
-  }).then(response => {
-    alert(response.data.content);
-    console.log(response);
-  });
-
+  // axios.get("http://localhost:18000/nls/pass", {
+  //   params: {
+  //     name: "张三"
+  //   }
+  // }).then(response => {
+  //   alert(response.data.content);
+  //   console.log(response);
+  // });
+  service("/pass", {params: {name: "王五"}});
 }
 </script>
 <style scoped>
