@@ -11,6 +11,7 @@
         <Sider></Sider>
         <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
           Content
+          <a-button type="primary" @click="send">点击发请求</a-button>
         </a-layout-content>
       </a-layout>
     </a-layout-content>
@@ -22,6 +23,15 @@
 <script setup>
 import Header from "../components/Header.vue";
 import Sider from "../components/Sider.vue";
+import axios from "axios";
+
+//
+function send() {
+  axios.get("http://localhost:18000/nls/test").then(response => {
+    console.log(response);
+  });
+
+}
 </script>
 <style scoped>
 
