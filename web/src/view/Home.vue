@@ -27,7 +27,12 @@ import axios from "axios";
 
 //
 function send() {
-  axios.get("http://localhost:18000/nls/test").then(response => {
+  axios.get("http://localhost:18000/nls/pass", {
+    params: {
+      name: "张三"
+    }
+  }).then(response => {
+    alert(response.data.content);
     console.log(response);
   });
 

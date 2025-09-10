@@ -9,6 +9,7 @@ import com.xm.nls.business.service.DemoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,5 +32,12 @@ public class TestController {
         List<Demo> demoList = demoService.query(demoQueryReq);
         // 避免返回直接的实体对象,将数据转换成DemoQueryResp
         return new CommonResp<>(BeanUtil.copyToList(demoList, DemoQueryResp.class));
+    }
+
+    // 测试前后端交互接口
+    @GetMapping("/pass")
+    public CommonResp<Object> pass(@RequestParam("name") String name) {
+        String msg = "恭喜你" + name + "，前后端交互跑通了!";
+        return new CommonResp<>(msg);
     }
 }
