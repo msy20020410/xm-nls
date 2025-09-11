@@ -1,5 +1,6 @@
 package com.xm.nls.business.exception;
 
+import com.xm.nls.business.enums.BusinessExceptionEnum;
 import lombok.Data;
 
 /**
