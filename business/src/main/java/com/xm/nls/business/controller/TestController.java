@@ -36,7 +36,7 @@ public class TestController {
 
     // 测试前后端交互接口
     @GetMapping("/pass")
-    public CommonResp<Object> pass(@RequestParam("name") String name) {
+    public CommonResp<Object> pass(@RequestParam(required = false) String name) {
         String msg = "恭喜你" + name + "，前后端交互跑通了!";
         return new CommonResp<>(msg);
     }

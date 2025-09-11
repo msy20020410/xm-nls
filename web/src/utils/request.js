@@ -2,14 +2,14 @@ import axios from 'axios';
 
 // 创建 Axios 实例
 const service = axios.create({
-    baseURL: 'http://localhost:18000/nls', // 可以配置全局接口前缀
+    baseURL: 'http://localhost:18000',
     timeout: 10000, // 请求超时
 });
 
 // 请求拦截器
 service.interceptors.request.use(
     config => {
-        console.log('[Axios Request] URL:', config.url);
+        console.log('[Axios Request] URL:', service.getUri() + config.url);
         console.log('[Axios Request] Method:', config.method);
         console.log('[Axios Request] Params:', config.params || config.data);
         return config;

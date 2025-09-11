@@ -23,7 +23,6 @@
 <script setup>
 import Header from "../components/Header.vue";
 import Sider from "../components/Sider.vue";
-import axios from "axios";
 import service from "../utils/request.js";
 
 //
